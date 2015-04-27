@@ -29,6 +29,10 @@
     border-top: 1px solid #E5E5E5;
 }
 
+.container {
+    color: #222;
+}
+
 // @media screen and(min - width: 1200px) {
 //     // 如果使用者之視窗寬度 >= 1200px，將會再載入這裡的 CSS。
 // }
@@ -58,10 +62,16 @@
       position: absolute;
       top:0;
   }
+  .main {
+      margin-top: 380px;
+  }
   .slogan {
       margin-top: 80px;
       color: #ffffff;
       z-index:10;
+  }
+  .place {
+      margin-top: 30px;
   }
 }
 

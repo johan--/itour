@@ -5,10 +5,20 @@ div(ng-include='"components/navbar/navbar.html"')
     h1.text-center.slogan Welcome to Taiwan
 
 
-.container
-  .main
+.container.main
+  .row
+    h3.text-center The Best Place For You.
+  .row.place
+    .col-sm-4
+      img.img-responsive.img-thumbnail(src='/assets/images/taipei.png')
+    .col-sm-4
+      img.img-responsive.img-thumbnail(src='/assets/images/taichung.png')
+    .col-sm-4
+      img.img-responsive.img-thumbnail(src='/assets/images/kaohsiung.png')
+
+
+
 
 footer.footer
   .container
-    p
-      | Go to Taiwna, Enjoy Taiwan, Love Taiwan.
+    p Go to Taiwan, Enjoy Taiwan, Love Taiwan.
