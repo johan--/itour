@@ -1,0 +1,94 @@
+div(ng-include='"components/navbar/navbar.html"')
+.container
+  .row
+    h3.text-center This is html form elements
+  .row
+    form
+      fieldset
+        legend Fieldset01
+        p
+          label(for="mytext") Label:&nbsp
+          input(type="text", id="mytext")
+        p
+          label(for="myemail") Email:&nbsp
+          input(type="email", id="myemail", name="myemail")
+        p
+          label(for="mysearch") Search:&nbsp
+          input(type="search", id="mysearch", name="mysearch")
+        p
+          label(for="mynumber") Number:&nbsp
+          input(type="number", id="mynumber", name="mynumber")
+        p
+          label(for="mycolor") Color:&nbsp
+          input(type="color", id="mycolor", name="mycolor")
+        p
+          label(for="mydate") Date:&nbsp
+          input(type="date", id="mydate", name="mydate")
+        p
+          label(for="mymonth") Month:&nbsp
+          input(type="month", id="mymonth", name="mymonth")
+        p
+          label(for="myweek") Week:&nbsp
+          input(type="week", id="myweek", name="myweek")
+        p
+          label(for="mytime") Time:&nbsp
+          input(type="time", id="mytime", name="mytime")
+        p
+          label(for="mypass") Password:&nbsp
+          input(type="password", id="mypass")
+        p
+          input(type="checkbox", id="mycheck")
+          label(for="mycheck") &nbsp Checkbox
+          br
+          input(type="checkbox", id="mycheck-2")
+          label(for="mycheck-2") &nbsp This another check box
+        p
+          fieldset
+            legend radio button
+            input(type="radio",id="radio1",name="radiodemo")
+            label(for="radio1") &nbsp radio 001
+            br
+            input(type="radio",id="radio2",name="radiodemo")
+            label(for="radio2") &nbsp radio 002
+            br
+            input(type="radio",id="radio3",name="radiodemo")
+            label(for="radio3") &nbsp radio 003
+        p
+          label(for="filedemo") select a file for upload
+          input(type="file", id="filedemo")
+          input(type="hidden", value="this is a value")
+        p
+          input(type="button", value="buttom", onclick='alert("1234");')
+
+      br
+      fieldset
+        legend Second fieldset
+        p
+          button(type='button') this is a button
+          button(type='submit') this is a submit
+          button(type='reset') this is a reset
+        p
+          label(for="demosel") please select one:
+          select(id="demosel")
+            optgroup(label="grp01")
+              option(value="1") Value_01
+              option(value="2") Value_02
+              option(value="3") Value_03
+            optgroup(label="grp02")
+              option(value="5") Value_05
+              option(value="6") Value_06
+              option(value="7") Value_07
+        p
+          label(for="demotextarea") This is textarea
+          br
+          textarea(id="demotextarea",name="demotextarea",cols=80,rows=10)
+
+
+
+
+
+
+
+
+
+div(ng-include='"components/navbar/footer.html"')
