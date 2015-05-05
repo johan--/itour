@@ -7,5 +7,7 @@ client/bower_components
 dist
 /server/config/local.env.js
 /vpDocument/*.vpp~*
-/vpDocument/.vpp*
 /vpDocument/tmp/*
+/vpDocument/.vpprefdata/*
+/vpDocument/teamwoekUser.xml
+/vpDocument/.lock
