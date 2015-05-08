@@ -1,0 +1,13 @@
+div(ng-include='"components/navbar/navbar.html"')
+.container
+  div.btn.btn-default(ngf-select, ngf-multiple='true', ng-model="files") Upload
+
+  div Thumbnail:
+  //div.col-md-4.col-sm-6.col-xs-6(ng-repeat="file in files")
+    img.img-thumbnail(ngf-src="file")
+
+
+  div.cropArea
+    img-crop(image="myImage", result-image="myCroppedImage")
+  div.col-md-4
+    img.img-circle(ng-src="{{myCroppedImage}}")
