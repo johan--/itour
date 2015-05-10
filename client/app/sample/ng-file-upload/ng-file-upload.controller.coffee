@@ -6,31 +6,31 @@ angular.module 'myappApp'
   $scope.files = {}
   $scope.myCroppedImage = ''
   $scope.myImage = ''
+  $scope.progressValue = 0
 
   $scope.$watch "files", ()->
-    $scope.upload $scope.files
     onFileSelect $scope.files
+    $scope.progressValue = 0
 
 
   onFileSelect = (files)->
-    file = files[0]
-    reader = new FileReader()
-    reader.onloadend = ()->
-      $scope.$apply ()->
+    if files
+      file = files[0]
+      reader = new FileReader()
+      reader.onloadend = ()->
         $scope.myImage = reader.result
-    reader.readAsDataURL(file)
+      reader.onprogress = (event)->
+        $scope.progressValue = parseInt(event.loaded / event.total * 100.0)
+      reader.readAsDataURL(file)
 
-  $scope.upload = (files)->
-    if files && files.length
-      _.forEach files, (file)->
-        $scope.myImage = file
-        console.log file
-        Upload.upload {
-          url: ''
-          file: file
-        }
-        .progress (evt)->
-          progressPercentage = parseInt(evt.loaded / evt.total * 100.0)
-          console.log 'progress: ' + progressPercentage + '% ' + evt.config.file.name
-        .success (data, status, headers, config)->
-          console.log 'file ' + config.file.name + 'uploaded. Response: ' + data
+  $scope.upload = (data)->
+    Upload.upload {
+      url: '/api/upload/profile'
+      file: data
+    }
+    .success (data, status, headers, config)->
+      console.log 'file ' + config.file.name + ' is uploaded successfully. Response: ' + data
+
+  $scope.saveCropImg = ()->
+#    console.log $scope.myCroppedImage
+    $scope.upload $scope.files

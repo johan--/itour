@@ -6,8 +6,13 @@ div(ng-include='"components/navbar/navbar.html"')
   //div.col-md-4.col-sm-6.col-xs-6(ng-repeat="file in files")
     img.img-thumbnail(ngf-src="file")
 
-
-  div.cropArea
-    img-crop(image="myImage", result-image="myCroppedImage")
-  div.col-md-4
-    img.img-circle(ng-src="{{myCroppedImage}}")
+  .row
+    div.cropArea.pull-left
+      img-crop(image="myImage", result-image="myCroppedImage")
+    div
+      img.img-circle(ng-src="{{myCroppedImage}}")
+  .row
+    progressbar(value="progressValue")
+      span {{progressValue}} %
+  div.btn.btn-default(ng-click="saveCropImg()") Save
+  img(src="{{myCroppedImage}}")
