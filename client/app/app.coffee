@@ -8,8 +8,8 @@ angular.module 'myappApp', [
 	'ui.router',
 	'ui.bootstrap',
 	'flow',
-  'ngFileUpload',
-  'ngImgCrop'
+	'ngFileUpload',
+	'ngImgCrop'
 ]
 .config ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) ->
 	$urlRouterProvider
