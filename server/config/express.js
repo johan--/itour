@@ -15,34 +15,48 @@ var errorHandler = require('errorhandler');
 var path = require('path');
 var config = require('./environment');
 var passport = require('passport');
-var multipart = require('connect-multiparty');
+var multer = require('multer');
+
 
 module.exports = function(app) {
-  var env = app.get('env');
+	var env = app.get('env');
 
-  app.set('views', config.root + '/server/views');
-  app.set('view engine', 'jade');
-  app.use(compression());
-  app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(bodyParser.json());
-  app.use(methodOverride());
-  app.use(cookieParser());
-  app.use(passport.initialize());
-  app.use(multipart({uploadDir: config.root + '/server/api'}));
+	app.set('views', config.root + '/server/views');
+	app.set('view engine', 'jade');
+	app.use(compression());
+	app.use(bodyParser.urlencoded({ extended: false }));
+	app.use(bodyParser.json());
+	app.use(methodOverride());
+	app.use(cookieParser());
+	app.use(passport.initialize());
+	app.use(multer({ dest: './uploads/',
+		 rename: function (fieldname, filename) {
+		    return filename+Date.now();
+		  },
+		onFileUploadStart: function (file) {
+		  console.log(file.originalname + ' is starting ...')
+		},
+		onFileUploadComplete: function (file) {
+		  console.log(file.fieldname + ' uploaded to  ' + file.path)
+		  // done=true;
+		}
+	}));
+	// app.use(multer({ dest: './uploads/' }));
+	
 
-  if ('production' === env) {
-    app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
-    app.use(express.static(path.join(config.root, 'public')));
-    app.set('appPath', config.root + '/public');
-    app.use(morgan('dev'));
-  }
+	if ('production' === env) {
+		app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
+		app.use(express.static(path.join(config.root, 'public')));
+		app.set('appPath', config.root + '/public');
+		app.use(morgan('dev'));
+	}
 
-  if ('development' === env || 'test' === env) {
-    app.use(require('connect-livereload')());
-    app.use(express.static(path.join(config.root, '.tmp')));
-    app.use(express.static(path.join(config.root, 'client')));
-    app.set('appPath', 'client');
-    app.use(morgan('dev'));
-    app.use(errorHandler()); // Error handler - has to be last
-  }
+	if ('development' === env || 'test' === env) {
+		app.use(require('connect-livereload')());
+		app.use(express.static(path.join(config.root, '.tmp')));
+		app.use(express.static(path.join(config.root, 'client')));
+		app.set('appPath', 'client');
+		app.use(morgan('dev'));
+		app.use(errorHandler()); // Error handler - has to be last
+	}
 };

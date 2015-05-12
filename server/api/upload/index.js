@@ -2,6 +2,7 @@
 
 var express = require('express');
 var controller = require('./upload.controller');
+var multer = require('multer');
 
 var router = express.Router();
 

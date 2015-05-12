@@ -1,18 +1,18 @@
 div(ng-include='"components/navbar/navbar.html"')
 .container
-  div.btn.btn-default(ngf-select, ngf-multiple='true', ng-model="files") Upload
+	div.btn.btn-default(ngf-select, ngf-multiple='true', ng-model="files") Upload
 
-  div Thumbnail:
-  //div.col-md-4.col-sm-6.col-xs-6(ng-repeat="file in files")
-    img.img-thumbnail(ngf-src="file")
+	div Thumbnail:
+	div.col-md-4.col-sm-6.col-xs-6(ng-repeat="file in files")
+		img.img-thumbnail(ngf-src="file")
 
-  .row
-    div.cropArea.pull-left
-      img-crop(image="myImage", result-image="myCroppedImage")
-    div
-      img.img-circle(ng-src="{{myCroppedImage}}")
-  .row
-    progressbar(value="progressValue")
-      span {{progressValue}} %
-  div.btn.btn-default(ng-click="saveCropImg()") Save
-  img(src="{{myCroppedImage}}")
+	//- .row
+	//- 	div.cropArea.pull-left
+	//- 		img-crop(image="myImage", result-image="myCroppedImage")
+	//- 	div
+	//- 		img.img-circle(ng-src="{{myCroppedImage}}")
+	//- .row
+	//- 	progressbar(value="progressValue")
+	//- 		span {{progressValue}} %
+	div.btn.btn-default(ng-click="saveCropImg()") Save
+	img(ng-show="myCroppedImage", src="{{myCroppedImage}}")
